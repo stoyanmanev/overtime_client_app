@@ -1,0 +1,12 @@
+overwrite: true
+schema: "https://overtime--api.herokuapp.com/graphql"
+documents: "graphql/**/*.graphql"
+generates:
+  generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-query"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

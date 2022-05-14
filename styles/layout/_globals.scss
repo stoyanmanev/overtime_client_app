@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html{
+    background-color: $medium;
+    box-sizing: border-box;
+    color: $dark;
+    font-family: $main-font;
+    font-size: 100% * ($base-font-size / 16px);
+    font-weight: 300;
+    hyphens: manual;
+    line-height: $base-line-height;
+    scroll-behavior: smooth;
+    text-size-adjust: none;
+}
+
+body {
+    background-color: $medium;
+	line-height: $base-line-height;
+	opacity: 1 !important;
+}
+
+a{
+    @extend %animated;
+    color: $primary;
+    text-decoration: none;
+    display: inline-block;
+    &:hover,
+    &:active,
+    &:focus{
+        color: $secondary;
+    }
+}

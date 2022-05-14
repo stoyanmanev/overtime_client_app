@@ -1,0 +1,29 @@
+.btn {
+  display: inline-block;
+  width: 100%;
+  background-color: $secondary;
+  border-radius: $base-border-radius;
+  border: 0;
+  transition: background-color 0.3s ease-in-out;
+  margin-bottom: $base-line-height;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $primary;
+  }
+
+  &.btn-danger {
+    background-color: $alert;
+    opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  svg[data-icon] {
+    @extend %faicon;
+  }
+}

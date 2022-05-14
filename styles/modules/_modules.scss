@@ -1,0 +1,28 @@
+%margin-bottom {
+  margin-bottom: $base-line-height;
+}
+%animated {
+  transition: all 0.3s ease-in-out;
+}
+
+%faicon {
+  display: inline-block;
+  height: 13.75px;
+  width: 16px;
+}
+
+%container {
+  background-color: $light;
+  border-radius: $base-border-radius !important;
+  padding: 9px 18px;
+}
+
+%content-headline {
+  display: block;
+  font-style: 18px;
+  line-height: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: $primary;
+  margin-bottom: $base-line-height;
+}

@@ -1,0 +1,152 @@
+header {
+  .header-conatiner {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    box-shadow: 0px 0px 3px 3px rgba($dark, 0.1);
+    z-index: 999;
+    @extend %container;
+    padding-left: 0;
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+    }
+
+    .branding-conatiner {
+      width: 100%;
+      max-width: 280px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logout-btn {
+      width: auto!important;
+      max-height: 45px;
+      min-width: 70px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+main {
+  p {
+    margin-bottom: $base-line-height;
+  }
+  .main-mt {
+    margin-top: $base-space + 40px;
+  }
+  .date-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $medium !important;
+    border-radius: $base-border-radius !important;
+    margin-bottom: $base-line-height;
+    .date-badge {
+      background-color: $primary !important;
+    }
+  }
+  .form-container {
+    @extend %container;
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+    }
+    .icon-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        display: inline-block;
+        margin-left: 8px;
+      }
+    }
+    .headline {
+      @extend %content-headline;
+    }
+  }
+  .statistic-conatiner {
+    padding-bottom: $base-line-height - 9px;
+    margin-bottom: $base-line-height;
+
+    @extend %container;
+    .group-row {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      @media only screen and (min-width: 480px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      @media only screen and (min-width: 992px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      @media only screen and (min-width: 1200px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      select {
+        width: 100%;
+        max-width: 200px;
+        @media only screen and (min-width: 992px) {
+          max-width: 100%;
+        }
+        @media only screen and (min-width: 1200px) {
+          max-width: 200px;
+        }
+      }
+    }
+    .all-hours-month {
+      display: flex;
+      flex-direction: column;
+
+      @media only screen and (min-width: 480px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      @media only screen and (min-width: 992px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      @media only screen and (min-width: 1200px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .overtime-hours {
+        background-color: $primary !important;
+      }
+      span {
+        display: inline-block;
+        text-align: center;
+        margin-bottom: 9px;
+        @media only screen and (min-width: 480px) {
+          display: inline-block;
+          text-align: start;
+        }
+      }
+    }
+    .headline {
+      @extend %content-headline;
+    }
+  }
+  .list-conatiner {
+    padding: 0;
+  }
+}
+
+footer {
+  padding-bottom: $base-space;
+}

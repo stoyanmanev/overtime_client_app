@@ -1,0 +1,19 @@
+.overlay-loading{
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba($dark, .88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    @extend %animated;
+
+    &.loading{
+        opacity: 1;
+        visibility: visible;
+    }
+}

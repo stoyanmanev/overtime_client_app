@@ -16,7 +16,7 @@ query Hour($id: String!){
   }
 }
 
-mutation CreateHour($data: HourInput!){
+mutation CreateHour($data: EditHourInput!){
   createHour(data: $data) {
     _id,
     date,

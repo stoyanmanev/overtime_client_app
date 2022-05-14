@@ -1,29 +1,10 @@
 import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from 'react-query';
+import { fetchData } from '../fetcher/fetcher';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-
-function fetcher<TData, TVariables>(endpoint: string, requestInit: RequestInit, query: string, variables?: TVariables) {
-  return async (): Promise<TData> => {
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      ...requestInit,
-      body: JSON.stringify({ query, variables }),
-    });
-
-    const json = await res.json();
-
-    if (json.errors) {
-      const { message } = json.errors[0];
-
-      throw new Error(message);
-    }
-
-    return json.data;
-  }
-}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -172,6 +153,13 @@ export type HourQueryVariables = Exact<{
 
 export type HourQuery = { __typename?: 'Query', hour: { __typename?: 'Hour', _id: any, date: string, value: number, createdBy: string } };
 
+export type CreateHourMutationVariables = Exact<{
+  data: EditHourInput;
+}>;
+
+
+export type CreateHourMutation = { __typename?: 'Mutation', createHour: { __typename?: 'Hour', _id: any, date: string, value: number, createdBy: string } };
+
 export type DeleteHourMutationVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -238,13 +226,12 @@ export const useHoursQuery = <
       TData = HoursQuery,
       TError = unknown
     >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
       variables?: HoursQueryVariables,
       options?: UseQueryOptions<HoursQuery, TError, TData>
     ) =>
     useQuery<HoursQuery, TError, TData>(
       variables === undefined ? ['Hours'] : ['Hours', variables],
-      fetcher<HoursQuery, HoursQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, HoursDocument, variables),
+      fetchData<HoursQuery, HoursQueryVariables>(HoursDocument, variables),
       options
     );
 export const HourDocument = `
@@ -261,13 +248,31 @@ export const useHourQuery = <
       TData = HourQuery,
       TError = unknown
     >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
       variables: HourQueryVariables,
       options?: UseQueryOptions<HourQuery, TError, TData>
     ) =>
     useQuery<HourQuery, TError, TData>(
       ['Hour', variables],
-      fetcher<HourQuery, HourQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, HourDocument, variables),
+      fetchData<HourQuery, HourQueryVariables>(HourDocument, variables),
+      options
+    );
+export const CreateHourDocument = `
+    mutation CreateHour($data: EditHourInput!) {
+  createHour(data: $data) {
+    _id
+    date
+    value
+    createdBy
+  }
+}
+    `;
+export const useCreateHourMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<CreateHourMutation, TError, CreateHourMutationVariables, TContext>) =>
+    useMutation<CreateHourMutation, TError, CreateHourMutationVariables, TContext>(
+      ['CreateHour'],
+      (variables?: CreateHourMutationVariables) => fetchData<CreateHourMutation, CreateHourMutationVariables>(CreateHourDocument, variables)(),
       options
     );
 export const DeleteHourDocument = `
@@ -283,13 +288,10 @@ export const DeleteHourDocument = `
 export const useDeleteHourMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<DeleteHourMutation, TError, DeleteHourMutationVariables, TContext>
-    ) =>
+    >(options?: UseMutationOptions<DeleteHourMutation, TError, DeleteHourMutationVariables, TContext>) =>
     useMutation<DeleteHourMutation, TError, DeleteHourMutationVariables, TContext>(
       ['DeleteHour'],
-      (variables?: DeleteHourMutationVariables) => fetcher<DeleteHourMutation, DeleteHourMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, DeleteHourDocument, variables)(),
+      (variables?: DeleteHourMutationVariables) => fetchData<DeleteHourMutation, DeleteHourMutationVariables>(DeleteHourDocument, variables)(),
       options
     );
 export const UsersDocument = `
@@ -308,13 +310,12 @@ export const useUsersQuery = <
       TData = UsersQuery,
       TError = unknown
     >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
       variables?: UsersQueryVariables,
       options?: UseQueryOptions<UsersQuery, TError, TData>
     ) =>
     useQuery<UsersQuery, TError, TData>(
       variables === undefined ? ['Users'] : ['Users', variables],
-      fetcher<UsersQuery, UsersQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, UsersDocument, variables),
+      fetchData<UsersQuery, UsersQueryVariables>(UsersDocument, variables),
       options
     );
 export const UserDocument = `
@@ -333,13 +334,12 @@ export const useUserQuery = <
       TData = UserQuery,
       TError = unknown
     >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
       variables: UserQueryVariables,
       options?: UseQueryOptions<UserQuery, TError, TData>
     ) =>
     useQuery<UserQuery, TError, TData>(
       ['User', variables],
-      fetcher<UserQuery, UserQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, UserDocument, variables),
+      fetchData<UserQuery, UserQueryVariables>(UserDocument, variables),
       options
     );
 export const CurrentUserDocument = `
@@ -357,13 +357,12 @@ export const useCurrentUserQuery = <
       TData = CurrentUserQuery,
       TError = unknown
     >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
       variables?: CurrentUserQueryVariables,
       options?: UseQueryOptions<CurrentUserQuery, TError, TData>
     ) =>
     useQuery<CurrentUserQuery, TError, TData>(
       variables === undefined ? ['currentUser'] : ['currentUser', variables],
-      fetcher<CurrentUserQuery, CurrentUserQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, CurrentUserDocument, variables),
+      fetchData<CurrentUserQuery, CurrentUserQueryVariables>(CurrentUserDocument, variables),
       options
     );
 export const CreateUserDocument = `
@@ -380,13 +379,10 @@ export const CreateUserDocument = `
 export const useCreateUserMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<CreateUserMutation, TError, CreateUserMutationVariables, TContext>
-    ) =>
+    >(options?: UseMutationOptions<CreateUserMutation, TError, CreateUserMutationVariables, TContext>) =>
     useMutation<CreateUserMutation, TError, CreateUserMutationVariables, TContext>(
       ['CreateUser'],
-      (variables?: CreateUserMutationVariables) => fetcher<CreateUserMutation, CreateUserMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, CreateUserDocument, variables)(),
+      (variables?: CreateUserMutationVariables) => fetchData<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, variables)(),
       options
     );
 export const DeleteUserDocument = `
@@ -403,13 +399,10 @@ export const DeleteUserDocument = `
 export const useDeleteUserMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<DeleteUserMutation, TError, DeleteUserMutationVariables, TContext>
-    ) =>
+    >(options?: UseMutationOptions<DeleteUserMutation, TError, DeleteUserMutationVariables, TContext>) =>
     useMutation<DeleteUserMutation, TError, DeleteUserMutationVariables, TContext>(
       ['DeleteUser'],
-      (variables?: DeleteUserMutationVariables) => fetcher<DeleteUserMutation, DeleteUserMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, DeleteUserDocument, variables)(),
+      (variables?: DeleteUserMutationVariables) => fetchData<DeleteUserMutation, DeleteUserMutationVariables>(DeleteUserDocument, variables)(),
       options
     );
 export const LoginDocument = `
@@ -420,13 +413,10 @@ export const LoginDocument = `
 export const useLoginMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<LoginMutation, TError, LoginMutationVariables, TContext>
-    ) =>
+    >(options?: UseMutationOptions<LoginMutation, TError, LoginMutationVariables, TContext>) =>
     useMutation<LoginMutation, TError, LoginMutationVariables, TContext>(
       ['Login'],
-      (variables?: LoginMutationVariables) => fetcher<LoginMutation, LoginMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, LoginDocument, variables)(),
+      (variables?: LoginMutationVariables) => fetchData<LoginMutation, LoginMutationVariables>(LoginDocument, variables)(),
       options
     );
 export const LogoutDocument = `
@@ -439,12 +429,9 @@ export const LogoutDocument = `
 export const useLogoutMutation = <
       TError = unknown,
       TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit },
-      options?: UseMutationOptions<LogoutMutation, TError, LogoutMutationVariables, TContext>
-    ) =>
+    >(options?: UseMutationOptions<LogoutMutation, TError, LogoutMutationVariables, TContext>) =>
     useMutation<LogoutMutation, TError, LogoutMutationVariables, TContext>(
       ['Logout'],
-      (variables?: LogoutMutationVariables) => fetcher<LogoutMutation, LogoutMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, LogoutDocument, variables)(),
+      (variables?: LogoutMutationVariables) => fetchData<LogoutMutation, LogoutMutationVariables>(LogoutDocument, variables)(),
       options
     );

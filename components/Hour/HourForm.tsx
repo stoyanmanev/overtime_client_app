@@ -2,7 +2,7 @@ import { faCalendarCheck, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useCreateHourMutation, useHoursQuery } from "../../generated/graphql";
 
 const HourForm: React.FC = () => {
@@ -86,17 +86,6 @@ const submitHourForm = (e: any) => {
           <FontAwesomeIcon icon={faCheck} />
         </Button>
       </Form>
-      <ToastContainer
-          position="bottom-left"
-          autoClose={8000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
     </Container>
   );
 };

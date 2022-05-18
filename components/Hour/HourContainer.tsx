@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
 import { useDeleteHourMutation, useHoursQuery, User } from "../../generated/graphql";
 import HourList from "./HourList";
@@ -45,17 +45,6 @@ const HourContainer: React.FC<Props> = ({ user }) => {
   return (
     <Container className="list-conatiner">
       {data && <HourList hours={data.hours} user={user} onDelete={onDelete}/>}
-      <ToastContainer
-          position="bottom-left"
-          autoClose={8000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
     </Container>
   );
 };

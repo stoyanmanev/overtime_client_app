@@ -50,6 +50,18 @@ mutation DeleteUser($id: String!){
   }
 }
 
+
+mutation EditUser($id: String!, $data: EditUserInput!){
+  editUser(_id: $id, data: $data) {
+    _id,
+    username,
+    fullname,
+    email,
+    password
+  }
+}
+
+
 mutation Login($email: String!, $password: String!){
     login(email: $email, password: $password)
 }
@@ -59,3 +71,5 @@ mutation Logout{
       _id
     }
 }
+
+

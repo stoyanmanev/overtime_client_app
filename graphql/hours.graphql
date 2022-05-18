@@ -33,3 +33,12 @@ mutation DeleteHour($id: String!){
     createdBy,
   }
 }
+
+mutation EditHour($id: String!, $data: EditHourInput!){
+  editHour(_id: $id, data: $data) {
+    _id,
+    date,
+    value,
+    createdBy,
+  }
+}

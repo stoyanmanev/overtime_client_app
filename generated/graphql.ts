@@ -30,15 +30,15 @@ export type CreateUserInput = {
 };
 
 export type EditHourInput = {
-  date: Scalars['String'];
+  date?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
-  value: Scalars['Float'];
+  value?: InputMaybe<Scalars['Float']>;
 };
 
 export type EditUserInput = {
   email?: InputMaybe<Scalars['String']>;
   fullname?: InputMaybe<Scalars['String']>;
-  hours: Array<HourInput>;
+  hours?: InputMaybe<Array<HourInput>>;
   password?: InputMaybe<Scalars['String']>;
   username?: InputMaybe<Scalars['String']>;
 };
@@ -167,6 +167,14 @@ export type DeleteHourMutationVariables = Exact<{
 
 export type DeleteHourMutation = { __typename?: 'Mutation', deleteHour: { __typename?: 'Hour', _id: any, date: string, value: number, createdBy: string } };
 
+export type EditHourMutationVariables = Exact<{
+  id: Scalars['String'];
+  data: EditHourInput;
+}>;
+
+
+export type EditHourMutation = { __typename?: 'Mutation', editHour: { __typename?: 'Hour', _id: any, date: string, value: number, createdBy: string } };
+
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -197,6 +205,14 @@ export type DeleteUserMutationVariables = Exact<{
 
 
 export type DeleteUserMutation = { __typename?: 'Mutation', deleteUser: { __typename?: 'User', _id: any, username: string, fullname: string, password: string, email: string } };
+
+export type EditUserMutationVariables = Exact<{
+  id: Scalars['String'];
+  data: EditUserInput;
+}>;
+
+
+export type EditUserMutation = { __typename?: 'Mutation', editUser: { __typename?: 'User', _id: any, username: string, fullname: string, email: string, password: string } };
 
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
@@ -292,6 +308,25 @@ export const useDeleteHourMutation = <
     useMutation<DeleteHourMutation, TError, DeleteHourMutationVariables, TContext>(
       ['DeleteHour'],
       (variables?: DeleteHourMutationVariables) => fetchData<DeleteHourMutation, DeleteHourMutationVariables>(DeleteHourDocument, variables)(),
+      options
+    );
+export const EditHourDocument = `
+    mutation EditHour($id: String!, $data: EditHourInput!) {
+  editHour(_id: $id, data: $data) {
+    _id
+    date
+    value
+    createdBy
+  }
+}
+    `;
+export const useEditHourMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<EditHourMutation, TError, EditHourMutationVariables, TContext>) =>
+    useMutation<EditHourMutation, TError, EditHourMutationVariables, TContext>(
+      ['EditHour'],
+      (variables?: EditHourMutationVariables) => fetchData<EditHourMutation, EditHourMutationVariables>(EditHourDocument, variables)(),
       options
     );
 export const UsersDocument = `
@@ -403,6 +438,26 @@ export const useDeleteUserMutation = <
     useMutation<DeleteUserMutation, TError, DeleteUserMutationVariables, TContext>(
       ['DeleteUser'],
       (variables?: DeleteUserMutationVariables) => fetchData<DeleteUserMutation, DeleteUserMutationVariables>(DeleteUserDocument, variables)(),
+      options
+    );
+export const EditUserDocument = `
+    mutation EditUser($id: String!, $data: EditUserInput!) {
+  editUser(_id: $id, data: $data) {
+    _id
+    username
+    fullname
+    email
+    password
+  }
+}
+    `;
+export const useEditUserMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<EditUserMutation, TError, EditUserMutationVariables, TContext>) =>
+    useMutation<EditUserMutation, TError, EditUserMutationVariables, TContext>(
+      ['EditUser'],
+      (variables?: EditUserMutationVariables) => fetchData<EditUserMutation, EditUserMutationVariables>(EditUserDocument, variables)(),
       options
     );
 export const LoginDocument = `

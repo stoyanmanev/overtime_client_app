@@ -15,7 +15,7 @@
   &.btn-danger {
     background-color: $alert;
     opacity: 0.8;
-  transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     &:hover,
     &:active,
     &:focus {
@@ -26,4 +26,123 @@
   svg[data-icon] {
     @extend %faicon;
   }
+}
+
+.ReactModalPortal {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  body.ReactModal__Body--open & {
+    opacity: 1;
+    visibility: visible;
+  }
+  .ReactModal__Overlay {
+    background-color: rgba($dark, 0.55) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+    z-index: 99999;
+
+    &.ReactModal__Overlay--after-open {
+      .modal-window {
+        transform: scale(1);
+      }
+    }
+    .modal-window {
+      @extend %container;
+      position: relative;
+      padding: 70px 70px 40px;
+      transform: scale(0);
+      transition: transform 0.3s ease-in-out;
+      .close-modal-btn {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+        padding: 0px;
+        width: auto;
+        color: $dark;
+        background-color: transparent;
+      }
+    }
+  }
+  .ReactModal__Content {
+    width: 100%;
+    max-width: 700px;
+    
+    .modal-content {
+      padding: 14px 18px;
+      margin-bottom: $base-line-height;
+      .headline {
+        font-weight: 500;
+        line-height: 42.5px;
+      }
+      .editable-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .control-group {
+          display: flex;
+        }
+        .editable-buttons {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          .btn {
+            padding: 4px 8px;
+            min-width: 34px;
+            min-height: 35px;
+            margin-bottom: 0;
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+
+            &.editable-cancel {
+              background-color: $medium;
+              color: $dark;
+            }
+          }
+        }
+      }
+      .align-content {
+        display: flex;
+        align-items: center;
+      }
+      a {
+        text-decoration: none;
+      }
+    }
+    form {
+      .input-group-text {
+        min-width: 96px;
+      }
+    }
+    .close-btn {
+      top: 6px;
+      right: 14px;
+      position: absolute;
+      background-color: transparent;
+      color: $dark;
+      border: 0;
+      padding: 0;
+      font-weight: 500;
+    }
+  }
+}
+
+.headline-badge {
+  font-size: 24px !important;
+  line-height: 1.25em;
+  text-align: center;
+  display: block;
+  margin-bottom: $base-line-height;
+}
+.user-information {
+  margin-bottom: $base-line-height;
+}
+
+.generated-input {
+  border-radius: $base-border-radius;
+  border-color: $secondary;
 }

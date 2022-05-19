@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import { useCurrentUserQuery } from "../generated/graphql";
@@ -10,17 +10,24 @@ import HourContainer from "../components/Hour/HourContainer";
 import HourForm from "../components/Hour/HourForm";
 import HoutStatisticContainer from "../components/Hour/HourStatisticContainer";
 
-
 const Home: NextPage = () => {
+
+  const [user, setUser] = useState({});
+  const [currectUser, setCurrectUser] = useState({});
+  const [token, setToken] = useState('');
+
+
   const { isLoading, isError, data, error, refetch } = useCurrentUserQuery(
     {},
-    { refetchOnWindowFocus: false }
+    { refetchOnWindowFocus: false}
   );
-  
-  const [user, setUser] = useState({});
-  const [forceRender, setforceRender] = useState(false);
 
-  console.log(forceRender)
+  useEffect(() => {
+    if(token !== ''){
+      refetch();
+    }
+  }, [token])
+
   if (isLoading) {
     return (
       <DefaultLayout>
@@ -38,23 +45,25 @@ const Home: NextPage = () => {
 
   if (isError) {
     return (
-      <DefaultLayout>
-        <AuthContainer setUser={setUser} />
-      </DefaultLayout>
+        <DefaultLayout>
+          <AuthContainer setCurrectUser={setCurrectUser} setToken={setToken}/>
+        </DefaultLayout>
     );
   }
+
+
+
   if (data?.currentUser && Object.entries(user).length === 0) {
     setUser(data);
   }
 
   return (
-    <div>
-      <DefaultLayout user={data?.currentUser} setforceRender={setforceRender}>
+      <DefaultLayout user={data?.currentUser} refetch={refetch}>
         <Container className="main-mt">
           <Row>
             <Col lg={4}>
-              <HourForm/>
-              <HoutStatisticContainer user={data?.currentUser}/>
+              <HourForm />
+              <HoutStatisticContainer user={data?.currentUser} />
             </Col>
             <Col lg={8}>
               <HourContainer user={data?.currentUser} />
@@ -73,7 +82,6 @@ const Home: NextPage = () => {
           pauseOnHover
         />
       </DefaultLayout>
-    </div>
   );
 };
 

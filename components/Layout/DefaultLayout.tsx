@@ -3,20 +3,21 @@ import Image from "next/image";
 import {useState} from 'react';
 import { Container, Row, Col, Badge, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { User } from "../../generated/graphql";
+import { faXmark, faCheck, faGear } from "@fortawesome/free-solid-svg-icons";
 import AuthLogout from "../Auth/AuthLogout";
 import Modal from "react-modal";
 import ReactModal from "react-modal";
 import UserInformation from "../UserInformation";
+import CurrentUser from "../../interfaces/CurrectUser";
+
 
 interface Props {
   children?: React.ReactNode;
-  user: User;
-  setforceRender: (boolean: boolean) => void;
+  user?: CurrentUser;
+  refetch?: any;
 }
 
-const Layout: React.FC<Props> = ({ children, user, setforceRender }) => {
+const Layout: React.FC<Props> = ({ children, user, refetch }) => {
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -60,8 +61,10 @@ const Layout: React.FC<Props> = ({ children, user, setforceRender }) => {
                 </div>
               </div>
               <div className="right-side">
-                <span className="username" onClick={() => setIsOpen(true)}>{user.username}</span>
-                <AuthLogout user={user} setforceRender={setforceRender} />
+                <span className="edit-user" onClick={() => setIsOpen(true)}>
+                  <FontAwesomeIcon icon={faGear} />
+                </span>
+                <AuthLogout user={user} refetch={refetch}/>
               </div>
             </Row>
           </Container>

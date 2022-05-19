@@ -30,22 +30,34 @@ header {
     }
 
     .right-side,
-    .left-side{
+    .left-side {
       width: auto !important;
     }
 
-    .right-side{
+    .right-side {
       display: flex;
       align-items: center;
     }
-    .username{
+    .edit-user {
       margin-right: $base-line-height;
-      font-weight: normal;
-      font-size: 22px;
-      line-height: 32px;
-      cursor: pointer;
-    }
+      display: flex;
+      align-items: center;
 
+      svg {
+        @extend %faicon;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        opacity: 1;
+        transition: opacity .3s ease-in-out;
+
+        &:hover,
+        &:active,
+        &:focus{
+          opacity: .7;
+        }
+      }
+    }
   }
 }
 

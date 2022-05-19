@@ -6,15 +6,15 @@ import { useLogoutMutation, User } from "../../generated/graphql";
 
 interface Props {
   user: User;
-  setforceRender: (boolean: boolean) => void
+  refetch: any;
 }
 
-const AuthLogout: React.FC<Props> = ({ user, setforceRender}) => {
+const AuthLogout: React.FC<Props> = ({ user, refetch }) => {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const { mutate } = useLogoutMutation({
     onSuccess: (data) => {
       removeCookie("token");
-      setforceRender(true);
+      refetch();
     },
     onError: (err) => {
       console.log(err);

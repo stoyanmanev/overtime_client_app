@@ -48,7 +48,7 @@ export type Hour = {
   _id: Scalars['ObjectId'];
   createdBy: Scalars['String'];
   date: Scalars['String'];
-  description: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
   value: Scalars['Float'];
 };
 
@@ -56,7 +56,7 @@ export type HourInput = {
   _id: Scalars['ObjectId'];
   createdBy: Scalars['String'];
   date: Scalars['String'];
-  description: Scalars['String'];
+  description?: InputMaybe<Scalars['String']>;
   value: Scalars['Float'];
 };
 

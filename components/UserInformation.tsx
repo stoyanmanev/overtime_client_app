@@ -1,10 +1,11 @@
-import {MouseEvent, useState} from "react";
+import {useState} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { User } from "../generated/graphql";
 import EditableFieldContainer from "./EditableFieldContainer";
+import CurrentUser from "../interfaces/CurrectUser"
 
 interface Props {
-  user: User;
+  user: CurrentUser;
 }
 
 const UserInformation: React.FC<Props> = ({ user }) => {

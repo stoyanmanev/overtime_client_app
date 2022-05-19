@@ -2,11 +2,11 @@ import React from "react";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
-import { useDeleteHourMutation, useHoursQuery, User } from "../../generated/graphql";
+import { useDeleteHourMutation, useHoursQuery } from "../../generated/graphql";
 import HourList from "./HourList";
 
 interface Props {
-  user: User;
+  user: any;
 }
 
 const HourContainer: React.FC<Props> = ({ user }) => {
@@ -41,7 +41,6 @@ const HourContainer: React.FC<Props> = ({ user }) => {
   if (isError) {
     return <span>Error: Hours</span>;
   }
-
   return (
     <Container className="list-conatiner">
       {data && <HourList hours={data.hours} user={user} onDelete={onDelete}/>}

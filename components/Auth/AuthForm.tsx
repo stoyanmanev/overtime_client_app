@@ -12,17 +12,17 @@ import {
 } from "react-bootstrap";
 import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
 import ReactModal from "react-modal";
-import uuid from 'react-uuid';
+import { uuid } from 'uuidv4';
 import { useEditUserMutation, useUsersQuery } from "../../generated/graphql";
 import SendEmail from "../../heaplers/SendEmail";
 
 interface Props {
   submitE: (e: any) => void;
-  handle: (e: any, props: object) => void;
+  handle: any;
   email: string;
   password: string;
-  setEmail: () => void;
-  setPassword: () => void;
+  setEmail: any;
+  setPassword: any;
 }
 
 const AuthContainer: React.FC<Props> = ({
@@ -40,10 +40,9 @@ const AuthContainer: React.FC<Props> = ({
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const { isLoading, isError, data, error } = useUsersQuery({});
   const { mutate } = useEditUserMutation({
-    onSuccess: () => {
-      console.log("passwordF----> " + passwordF)
-      const isEmailSendend: boolean = SendEmail(userF, emailF, passwordF);
-      if(isEmailSendend) return toast.success(`Successfully updated your account`);
+    onSuccess: async () => {
+      const isEmailSendend: Promise<boolean> = SendEmail(userF, emailF, passwordF);
+      if(await isEmailSendend) return toast.success(`Successfully updated your account`);
       return toast.error(`Еmail was not sent successfully`);
     },
     onError: (err: any) => {

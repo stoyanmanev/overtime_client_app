@@ -2,10 +2,11 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "react-bootstrap";
 import { useCookies } from "react-cookie";
-import { useLogoutMutation, User } from "../../generated/graphql";
+import { useLogoutMutation } from "../../generated/graphql";
+import CurrentUser from "../../interfaces/CurrectUser";
 
 interface Props {
-  user: User;
+  user: CurrentUser;
   refetch: any;
 }
 

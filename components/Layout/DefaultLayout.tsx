@@ -8,7 +8,7 @@ import AuthLogout from "../Auth/AuthLogout";
 import Modal from "react-modal";
 import ReactModal from "react-modal";
 import UserInformation from "../UserInformation";
-import CurrentUser from "../../interfaces/CurrectUser";
+import CurrentUser from "../../interfaces/CurrectUser"
 
 
 interface Props {
@@ -64,7 +64,7 @@ const Layout: React.FC<Props> = ({ children, user, refetch }) => {
                 <span className="edit-user" onClick={() => setIsOpen(true)}>
                   <FontAwesomeIcon icon={faGear} />
                 </span>
-                <AuthLogout user={user} refetch={refetch}/>
+                {user && <AuthLogout user={user} refetch={refetch}/>}
               </div>
             </Row>
           </Container>
@@ -85,7 +85,7 @@ const Layout: React.FC<Props> = ({ children, user, refetch }) => {
           className="profile-controler modal-window"
         >
          <Badge className="headline-badge">Profile Controller</Badge>
-         <UserInformation user={user}/>
+         {user &&<UserInformation user={user}/>}
          <Button className="close-modal-btn" onClick={closeModal}>
             <FontAwesomeIcon icon={faXmark} />
           </Button>

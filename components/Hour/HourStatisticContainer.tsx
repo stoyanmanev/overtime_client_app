@@ -35,7 +35,7 @@ const HoutStatisticContainer: React.FC<Props> = ({ user }) => {
     <Container className="statistic-conatiner">
       <div className="headline">Monthly statistics</div>
       <div>
-        <HourFormStatistic hours={userHoursList} setCollectionHours={setCollectionHours}/>
+         {userHoursList && <HourFormStatistic hours={userHoursList} setCollectionHours={setCollectionHours}/>}
       </div>
       <div className="all-hours-month">
         <span>Extraordinary hours per month: </span>

@@ -53,7 +53,7 @@ const AuthContainer: React.FC<Props> = ({setCurrectUser, setToken}) => {
         <AuthForm
           submitE={tryLogin}
           handle={(
-            e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+            e: any,
             props: { func: any; name?: string }
           ) => handleInputChange(e, props)}
           email={email}

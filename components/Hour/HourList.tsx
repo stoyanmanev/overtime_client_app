@@ -1,12 +1,12 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
-import { Hour, User } from "../../generated/graphql";
+import { Hour } from "../../generated/graphql";
 import HourListItem from "./HourListItem";
-import { toast } from "react-toastify";
+import CurrentUser from "../../interfaces/CurrectUser";
 
 interface Props {
   hours: Hour[];
-  user: User;
+  user: CurrentUser;
   onDelete: (_id: string) => void;
 }
 

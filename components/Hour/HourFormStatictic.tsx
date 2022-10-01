@@ -19,18 +19,18 @@ const HourFormStatistic: React.FC<Props> = ({ hours, setCollectionHours }) => {
 
   const currentMonth = (month: string) => {
     const mapping: any = {
-      "01": "January",
-      "02": "February",
-      "03": "March",
-      "04": "April",
-      "05": "May",
-      "06": "June",
-      "07": "July",
-      "08": "Augrust",
-      "09": "September",
-      "10": "October",
-      "11": "November",
-      "12": "December",
+      "01": "Януари",
+      "02": "Февруари",
+      "03": "Март",
+      "04": "Април",
+      "05": "Май",
+      "06": "Юни",
+      "07": "Юли",
+      "08": "Август",
+      "09": "Септември",
+      "10": "Октомври",
+      "11": "Ноември",
+      "12": "Декември",
     };
     const m: string = mapping[month.split("-")[1]];
     const rv: string = m + "-" + month.split("-")[0];
@@ -62,7 +62,7 @@ const HourFormStatistic: React.FC<Props> = ({ hours, setCollectionHours }) => {
   return (
     <Form>
       <Form.Group className="mb-3 group-row" controlId="">
-        <Form.Label>Month: </Form.Label>
+        <Form.Label>Месец: </Form.Label>
         <Form.Select
           onChange={(e) => changeSelect(e)}
           aria-label="Default select example"

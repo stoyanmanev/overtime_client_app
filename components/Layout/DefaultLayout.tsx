@@ -84,7 +84,7 @@ const Layout: React.FC<Props> = ({ children, user, refetch }) => {
           contentLabel="Example Modal"
           className="profile-controler modal-window"
         >
-         <Badge className="headline-badge">Profile Controller</Badge>
+         <Badge className="headline-badge">Профил</Badge>
          {user &&<UserInformation user={user}/>}
          <Button className="close-modal-btn" onClick={closeModal}>
             <FontAwesomeIcon icon={faXmark} />

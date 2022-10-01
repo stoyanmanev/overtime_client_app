@@ -81,6 +81,9 @@
         height: 100%;
         display: flex;
         align-items: center;
+        @media only screen and (max-width: 575px) {
+          margin-bottom: 1.5rem;
+        }
         .control-group {
           display: flex;
         }
@@ -88,6 +91,10 @@
           height: 100%;
           display: flex;
           align-items: center;
+          @media only screen and (max-width: 575px) {
+            justify-content: center;
+            z-index: 1;
+          }
           .btn {
             padding: 4px 8px;
             min-width: 34px;
@@ -101,6 +108,16 @@
             &.editable-cancel {
               background-color: $medium;
               color: $dark;
+            }
+          }
+
+          & > .row{
+            @media only screen and (max-width: 575px) {
+                width: 100%;
+                & > .col-sm-6{
+                  flex-basis: 50%;
+                  max-width: 50%;
+                }
             }
           }
         }

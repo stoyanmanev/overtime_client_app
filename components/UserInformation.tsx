@@ -63,7 +63,7 @@ const UserInformation: React.FC<Props> = ({ user }) => {
       <Container className="modal-content">
         <Row>
           <Col sm={4}>
-            <span className="headline">Fullname</span>
+            <span className="headline">Име</span>
           </Col>
           <Col sm={8} className="align-content">
             {!editableAreaFN
@@ -73,7 +73,7 @@ const UserInformation: React.FC<Props> = ({ user }) => {
         </Row>
         <Row>
           <Col sm={4}>
-            <span className="headline">Username</span>
+            <span className="headline">Потребител</span>
           </Col>
           <Col sm={8} className="align-content">
             {!editableAreaUsername
@@ -83,7 +83,7 @@ const UserInformation: React.FC<Props> = ({ user }) => {
         </Row>
         <Row>
           <Col sm={4}>
-            <span className="headline">Email</span>
+            <span className="headline">Имейл</span>
           </Col>
           <Col sm={8} className="align-content">
             {!editableAreaEmail
@@ -93,7 +93,7 @@ const UserInformation: React.FC<Props> = ({ user }) => {
         </Row>
         <Row>
           <Col sm={4}>
-            <span className="headline">Password</span>
+            <span className="headline">Парола</span>
           </Col>
           <Col sm={8} className="align-content">
             {!editableAreaPassword

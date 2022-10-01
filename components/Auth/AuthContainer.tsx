@@ -49,7 +49,7 @@ const AuthContainer: React.FC<Props> = ({setCurrectUser, setToken}) => {
 
   return (
     <Row className="justify-content-center">
-      <Col sm={8} xl={6}>
+      <Col sm={12} lg={10} xl={6}>
         <AuthForm
           submitE={tryLogin}
           handle={(

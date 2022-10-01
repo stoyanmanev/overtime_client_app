@@ -11,7 +11,7 @@ const HourForm: React.FC = () => {
   const { refetch } = useHoursQuery({});
   const {mutate} = useCreateHourMutation({
       onSuccess: (res) => {
-        toast.info(`Record for ${res.createHour.date} is created`)
+        toast.info(`Вие направихте запис за ${res.createHour.date}.`)
         refetch();
       },
       onError:(err) => {
@@ -36,10 +36,10 @@ const submitHourForm = (e: any) => {
 
   return (
     <Container className="form-container mb-4">
-      <div className="headline">Create Overtime Record</div>
+      <div className="headline">Нов запис</div>
       <Form onSubmit={submitHourForm}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Date: </Form.Label>
+          <Form.Label>Дата: </Form.Label>
           <Form.Control
             className="mb-2"
             type="date"
@@ -48,12 +48,12 @@ const submitHourForm = (e: any) => {
             placeholder="Enter date"
           />
           <Button onClick={setNowDate} className="icon-button">
-            set today
+            Днешна дата
             <FontAwesomeIcon icon={faCalendarCheck} />
           </Button>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Overtime: </Form.Label>
+          <Form.Label>Часове: </Form.Label>
           <Form.Select onChange={(e) => changeSelect(e)} aria-label="Default select example">
             <option>-----</option>
             <option value="10">00:10</option>
@@ -80,6 +80,54 @@ const submitHourForm = (e: any) => {
             <option value="220">03:40</option>
             <option value="230">03:50</option>
             <option value="240">04:00</option>
+            <option value="250">04:10</option>
+            <option value="260">04:20</option>
+            <option value="270">04:30</option>
+            <option value="280">04:40</option>
+            <option value="290">04:50</option>
+            <option value="300">05:00</option>
+            <option value="310">05:10</option>
+            <option value="320">05:20</option>
+            <option value="330">05:30</option>
+            <option value="340">05:40</option>
+            <option value="350">05:50</option>
+            <option value="360">06:00</option>
+            <option value="370">06:10</option>
+            <option value="380">06:20</option>
+            <option value="390">06:30</option>
+            <option value="400">06:40</option>
+            <option value="410">06:50</option>
+            <option value="420">07:00</option>
+            <option value="430">07:10</option>
+            <option value="440">07:20</option>
+            <option value="450">07:30</option>
+            <option value="460">07:40</option>
+            <option value="470">07:50</option>
+            <option value="480">08:00</option>
+            <option value="490">08:10</option>
+            <option value="500">08:20</option>
+            <option value="510">08:30</option>
+            <option value="520">08:40</option>
+            <option value="530">08:50</option>
+            <option value="540">09:00</option>
+            <option value="550">09:10</option>
+            <option value="560">09:20</option>
+            <option value="570">09:30</option>
+            <option value="580">09:40</option>
+            <option value="590">09:50</option>
+            <option value="600">10:00</option>
+            <option value="610">10:10</option>
+            <option value="620">10:20</option>
+            <option value="630">10:30</option>
+            <option value="640">10:40</option>
+            <option value="650">10:50</option>
+            <option value="660">11:00</option>
+            <option value="670">11:10</option>
+            <option value="680">11:20</option>
+            <option value="690">11:30</option>
+            <option value="700">11:40</option>
+            <option value="710">11:50</option>
+            <option value="720">12:00</option>
           </Form.Select>
         </Form.Group>
         <Button variant="primary" type="submit">

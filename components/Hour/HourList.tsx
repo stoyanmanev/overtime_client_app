@@ -16,7 +16,7 @@ const HourList: React.FC<Props> = ({ hours, user, onDelete }) => {
   if (userHours.length === 0) {
     return (
       <ListGroup>
-        <div className="list-group-item">Result not found</div>
+        <div className="list-group-item">Нямате записани часове</div>
       </ListGroup>
     );
   }

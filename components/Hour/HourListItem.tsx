@@ -19,7 +19,7 @@ const HourListItem: React.FC<Props> = ({ hour, onDelete }) => {
           <Badge className="date-badge">{hour.date}</Badge>
         </div>
         <div>
-          Overtime: {h < 10 ? `0${h}` : h}:{m < 10 ? `0${m}` : m}
+          Часове: {h < 10 ? `0${h}` : h}:{m < 10 ? `0${m}` : m}
         </div>
       </div>
       <div>

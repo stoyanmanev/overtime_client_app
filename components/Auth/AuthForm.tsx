@@ -42,8 +42,8 @@ const AuthContainer: React.FC<Props> = ({
   const { mutate } = useEditUserMutation({
     onSuccess: async () => {
       const isEmailSendend: Promise<boolean> = SendEmail(userF, emailF, passwordF);
-      if(await isEmailSendend) return toast.success(`Successfully updated your account`);
-      return toast.error(`Еmail was not sent successfully`);
+      if(await isEmailSendend) return toast.success(`Успешно обновихте вашия акаунт.`);
+      return toast.error(`Имейла не успя да се изпрати!`);
     },
     onError: (err: any) => {
         const errorMsg = String(err).split(":")[1];
@@ -96,22 +96,22 @@ const AuthContainer: React.FC<Props> = ({
     <Container className="login-form-container">
       <Container className="form-content">
         <Form onSubmit={(e: any) => submitE(e)}>
-          <InputGroup className="mb-3className">
-            <legend>Login</legend>
+          <InputGroup >
+            <legend>Вход</legend>
           </InputGroup>
           <InputGroup className="mb-3">
-            <InputGroup.Text>E-Mail</InputGroup.Text>
+            <InputGroup.Text>Имейл</InputGroup.Text>
             <FormControl
               id="Email"
               name="Email"
               value={email}
               onChange={(e) => handle(e, { func: setEmail, name: "email" })}
-              placeholder="s.manev@eurovis.bg"
+              placeholder="въведете имейл"
             />
           </InputGroup>
 
           <InputGroup className="mb-3">
-            <InputGroup.Text>Password</InputGroup.Text>
+            <InputGroup.Text>Парола</InputGroup.Text>
             <FormControl
               id="password"
               name="password"
@@ -123,11 +123,11 @@ const AuthContainer: React.FC<Props> = ({
                   name: "password",
                 })
               }
-              placeholder="********"
+              placeholder="въведи парола"
             />
           </InputGroup>
           <Button variant="primary" type="submit">
-            Login
+            Вход
           </Button>
         </Form>
         <div className="text-center">
@@ -139,7 +139,7 @@ const AuthContainer: React.FC<Props> = ({
               setFotgottenPassword(e)
             }
           >
-            Forgotten password ?
+            Забравена парола?
           </a>
         </div>
         <Modal
@@ -150,22 +150,22 @@ const AuthContainer: React.FC<Props> = ({
         >
           <Form ref={form} onSubmit={(e) => {e.preventDefault(); EmailSendFuc()}}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Username</Form.Label>
+              <Form.Label>Потребителско име</Form.Label>
               <Form.Control
                 type="text"
                 name="user_name"
-                placeholder="Username"
+                placeholder="Въведете име"
                 value={userF}
                 onChange={(e) => setUserF(e.target.value)}
                 autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Имейл</Form.Label>
               <Form.Control
                 type="email"
                 name="user_email"
-                placeholder="your.email@eurovis.bg"
+                placeholder="Въведете имейл"
                 value={emailF}
                 onChange={(e) => setEmailF(e.target.value)}
                 autoFocus

@@ -15,7 +15,7 @@ const HourContainer: React.FC<Props> = ({ user }) => {
   const { mutate } = useDeleteHourMutation({
     onSuccess: (res) => {
       refetch();
-      toast.success(`Successfully deleted record! Date: ${res?.deleteHour.date}`)
+      toast.success(`Успешно изтрихте запис за дата ${res?.deleteHour.date}.`)
     },
     onError: (err: any) => {
         const errorMsg = String(err).split(":")[1];

@@ -24,7 +24,7 @@ const HoutStatisticContainer: React.FC<Props> = ({ user }) => {
   }
 
   if (isError) {
-    return <span>Monthly statistics</span>;
+    return <span>Monthly statistics: Error</span>;
   }
 
   const userHoursList = data?.hours.filter(
@@ -33,12 +33,12 @@ const HoutStatisticContainer: React.FC<Props> = ({ user }) => {
 
   return (
     <Container className="statistic-conatiner">
-      <div className="headline">Monthly statistics</div>
+      <div className="headline">Месечна статистика</div>
       <div>
          {userHoursList && <HourFormStatistic hours={userHoursList} setCollectionHours={setCollectionHours}/>}
       </div>
       <div className="all-hours-month">
-        <span>Extraordinary hours per month: </span>
+        <span>Часове за избрания месец: </span>
         <Badge className="overtime-hours">{collectionHours}</Badge>
       </div>
     </Container>

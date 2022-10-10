@@ -25,6 +25,15 @@ export const fetchData = <TData, TVariables>(query: string, variables?: TVariabl
           query,
           variables,
         }),
+      }).then(async res => {
+        if(!res.ok && token){
+          cookies.remove('token');
+          window.location.href = window.location.href;
+        }
+        if(!res.ok && token === ''){
+          window.location.href = window.location.href;
+        }
+        return res;
       });
   
       const json = await res.json();
